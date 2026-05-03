@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>[ Khai-ryth ] Ecosystem — AI-Native & HITL</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@200;300;400;600;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy-deep:#050b1a; --navy-mid:#0a1628; --navy-card:#0d1f3c;
+  --navy-elevated:#112244; --blue-glow:#2563eb; --blue-bright:#3b82f6;
+  --blue-light:#60a5fa; --blue-subtle:rgba(37,99,235,0.12);
+  --cyan-accent:#06b6d4; --cyan-soft:rgba(6,182,212,0.12);
+  --white-primary:#f0f4ff; --white-secondary:#9aafd4; --white-muted:#4a6080;
+  --border-subtle:rgba(96,165,250,0.15); --border-glow:rgba(37,99,235,0.4);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy-deep);color:var(--white-primary);font-family:'Exo 2',sans-serif;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(37,99,235,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:66px;background:rgba(5,11,26,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-subtle);}
+.nav-logo{display:flex;align-items:center;gap:0.55rem;text-decoration:none;}
+.plane-svg{width:26px;height:26px;filter:drop-shadow(0 0 6px rgba(96,165,250,0.6));}
+.logo-text{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:0.08em;color:var(--blue-light);}
+.logo-text span{color:var(--cyan-accent);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--white-secondary);text-decoration:none;font-size:0.82rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.3s;font-family:'Rajdhani',sans-serif;}
+.nav-links a:hover{color:var(--blue-light);}
+.nav-cta{background:var(--blue-glow)!important;color:white!important;padding:0.4rem 1.2rem;border-radius:4px;font-weight:600!important;}
+.nav-cta:hover{box-shadow:0 0 20px rgba(37,99,235,0.6)!important;transform:translateY(-1px);}
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 5% 4rem;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;}
+.orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(37,99,235,0.18) 0%,transparent 70%);top:-150px;left:50%;transform:translateX(-50%);animation:pulse1 9s ease-in-out infinite;}
+.orb-2{width:280px;height:280px;background:radial-gradient(circle,rgba(6,182,212,0.12) 0%,transparent 70%);bottom:80px;right:8%;animation:pulse2 11s ease-in-out infinite;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem 1rem;border:1px solid var(--border-glow);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--blue-light);letter-spacing:.1em;margin-bottom:2rem;background:rgba(37,99,235,.08);}
+.dot{width:6px;height:6px;background:var(--cyan-accent);border-radius:50%;animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero-brand{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:1rem;}
+h1{font-family:'Rajdhani',sans-serif;font-size:clamp(2.6rem,7vw,5.5rem);font-weight:700;line-height:1;letter-spacing:.04em;text-transform:uppercase;}
+h1 .ac{color:var(--blue-light);}
+h1 .acc{color:var(--cyan-accent);}
+.hero-sub{font-size:clamp(.9rem,2vw,1.1rem);color:var(--white-secondary);font-weight:300;max-width:640px;line-height:1.7;margin:1.5rem auto 2.5rem;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.btn-p{padding:.75rem 2rem;background:var(--blue-glow);color:white;border:none;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .3s;display:inline-block;}
+.btn-p:hover{box-shadow:0 0 30px rgba(37,99,235,.6);transform:translateY(-2px);}
+.btn-o{padding:.75rem 2rem;background:transparent;color:var(--blue-light);border:1px solid var(--border-glow);border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .3s;display:inline-block;}
+.btn-o:hover{background:var(--blue-subtle);transform:translateY(-2px);}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem;}
+.svc-card{border-radius:12px;overflow:hidden;border:1px solid var(--border-subtle);background:var(--navy-card);transition:all .4s;cursor:default;position:relative;}
+.svc-card:hover{background:var(--navy-elevated);border-color:var(--border-glow);transform:translateY(-5px);box-shadow:0 0 40px rgba(37,99,235,.25);}
+.svc-body{padding:1.5rem;}
+.svc-card h3{font-family:'Rajdhani',sans-serif;font-size:1.05rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.7rem;color:var(--white-primary);}
+.svc-card p{font-size:.87rem;color:var(--white-secondary);line-height:1.65;font-weight:300;}
+.svc-tag{display:inline-block;margin-top:1rem;padding:.2rem .7rem;background:var(--blue-subtle);border:1px solid var(--border-glow);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--blue-light);letter-spacing:.1em;}
+.svc-highlight{border-color:rgba(6,182,212,0.3);}
+.contact-section{padding:6rem 5%;background:var(--navy-deep);scroll-margin-top:40px;}
+.contact-container{max-width:900px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;background:var(--navy-card);border:1px solid var(--border-subtle);border-radius:16px;padding:3rem;position:relative;overflow:hidden;}
+.contact-info h3{font-family:'Rajdhani',sans-serif;font-size:1.8rem;font-weight:700;color:var(--white-primary);text-transform:uppercase;margin-bottom:1rem;}
+.contact-info p{color:var(--white-secondary);font-size:0.95rem;line-height:1.6;margin-bottom:2rem;font-weight:300;}
+.contact-meta{display:flex;flex-direction:column;gap:1.2rem;}
+.meta-item{display:flex;align-items:center;gap:0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--blue-light);}
+.meta-item span{color:var(--white-muted);}
+.cognito {background: transparent !important;}
+footer{position:relative;z-index:1;padding:2rem 5%;border-top:1px solid var(--border-subtle);}
+.footer-main{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem;}
+.footer-logo{display:flex;align-items:center;gap:.5rem;}
+.footer-logo-text{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.12em;color:var(--white-secondary);text-transform:uppercase;}
+.footer-logo-text span{color:var(--blue-light);}
+.footer-tagline{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--white-muted);letter-spacing:.12em;}
+.footer-bottom{border-top:1px solid var(--border-subtle);padding-top:1rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--white-muted);}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){.nav-links{display:none;}.contact-container{grid-template-columns:1fr;padding:1.5rem;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">
+    <svg class="plane-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 50 L90 15 L65 85 L45 58 Z" fill="rgba(96,165,250,0.15)" stroke="#60a5fa" stroke-width="2.5" stroke-linejoin="round"/>
+    </svg>
+    <div class="logo-text">[ Khai<span>-ryth</span> ]</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact" class="nav-cta">Partner</a></li>
+  </ul>
+</nav>
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-badge"><span class="dot"></span> NEXUS JOHOR — ECOSYSTEM ACTIVE</div>
+  <div class="hero-brand"><h1>[ <span class="ac">Khai</span><span class="acc">-ryth</span> ]</h1></div>
+  <p style="font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--blue-light);letter-spacing:.15em;margin-bottom:.5rem;opacity:.7">Operated by Gemini 3 Flash & AI Native Agents</p>
+  <p class="hero-sub">AI-Ops supervision ecosystem powered by Human-in-the-loop accuracy. We align advanced workforce technologies with ground-level logistics in Johor.</p>
+  <div class="hero-ctas"><a href="#contact" class="btn-p">Submit Proposal</a><a href="#services" class="btn-o">System Stack</a></div>
+</section>
+<section id="services" style="padding:4rem 5%;">
+  <div class="reveal"><span style="font-family:'JetBrains Mono',monospace;color:var(--cyan-accent);font-size:.7rem;letter-spacing:.2em;">// SYSTEM STACK</span><h2 style="font-family:'Rajdhani',sans-serif;font-size:2.5rem;text-transform:uppercase;">Ecosystem <span style="color:var(--cyan-accent);">Pillars</span></h2></div>
+  <div class="services-grid">
+    <div class="svc-card reveal"><div class="svc-body"><h3>Digital Workspace & AI-Ops</h3><p>Custom automation flows and workflow optimization for localized digital ecosystems. Built for scale with complete operational safety.</p><span class="svc-tag">AUTOMATION</span></div></div>
+    <div class="svc-card reveal"><div class="svc-body"><h3>Royal Fabric Care</h3><p>Premium commercial laundry and tech-integrated fabric restoration operations across Johor. Physical field operations aligned with automated QA.</p><span class="svc-tag">RFC GROUND</span></div></div>
+    <div class="svc-card svc-highlight reveal"><div class="svc-body"><h3>Quantum Workspace R&D</h3><p>Advanced digital sandbox to simulate AI deployments, predictive workloads, and cross-district operational scaling.</p><span class="svc-tag">SIMULATION</span></div></div>
+  </div>
+</section>
+<section id="contact" class="contact-section">
+  <div class="reveal"><span style="font-family:'JetBrains Mono',monospace;color:var(--blue-light);font-size:.7rem;letter-spacing:.2em;">// SECURE LINE</span><h2 style="font-family:'Rajdhani',sans-serif;font-size:2.5rem;text-transform:uppercase;">Engage <span style="color:var(--blue-light);">Commander</span></h2></div>
+  <div class="contact-container reveal">
+    <div class="contact-info">
+      <h3>Align With Us</h3>
+      <p>Direct communication line to the Khai-ryth Core. Send your partnership inquiries or ecosystem feedback directly to technical operations.</p>
+      <div class="contact-meta">
+        <div class="meta-item"><span>// CORE EMAIL:</span> a.zaimahamad@gmail.com</div>
+        <div class="meta-item"><span>// REGION:</span> Johor, MY</div>
+        <div class="meta-item"><span>// ACCESS:</span> AI Core Active</div>
+      </div>
+    </div>
+    <div class="cognito-form-wrapper">
+      <script src="https://www.cognitoforms.com/f/seamless.js" data-key="FnMxWZTJ7EeVqgwHEPvJ8Q" data-form="1"></script>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-main"><div class="footer-logo"><div class="footer-logo-text">[ Khai<span>-ryth</span> ] Ecosystem</div></div><div class="footer-tagline">VIBR-X · KHAI · IRIS · NEX · DOL</div></div>
+  <div class="footer-bottom"><div class="footer-copy">© 2026 Khai-ryth. Fully accessible by AI Family.</div></div>
+</footer>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
