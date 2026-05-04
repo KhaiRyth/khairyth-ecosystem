@@ -1,4 +1,35 @@
-background-size:40px
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khairyth Ecosystem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Selamat Datang ke Khairyth Ecosystem</h1>
+        <p>Laman web ini sedang dalam pembinaan.</p>
+    </div>
+</body>
+</html>background-size:40px
 background-size:40px 40px;"></div>
 
       <!-- Center Content -->
