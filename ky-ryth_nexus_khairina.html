@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>[ Khai-ryth NEXUS ] — Khairina AI Education + Ecosystem</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@200;300;400;600;800&family=JetBrains+Mono:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#050b1a;color:#f0f4ff;font-family:'Exo 2',sans-serif;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:64px;
+  background:rgba(5,11,26,0.0);
+  backdrop-filter:blur(0px);
+  border-bottom:1px solid transparent;
+  transition:all 0.4s ease;
+}
+nav.scrolled{
+  background:rgba(5,11,26,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom-color:rgba(96,165,250,0.15);
+}
+.nav-logo{display:flex;align-items:center;gap:0.55rem;text-decoration:none;}
+.nav-logo svg{width:24px;height:24px;filter:drop-shadow(0 0 6px rgba(96,165,250,0.7));}
+.logo-text{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:0.1em;color:#f0f4ff;}
+.logo-text span{color:#60a5fa;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
+.nav-links a{color:rgba(240,244,255,0.8);text-decoration:none;font-size:0.78rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s;font-family:'Rajdhani',sans-serif;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{border:1px solid rgba(240,244,255,0.5)!important;padding:0.35rem 1.2rem;border-radius:2px;color:#fff!important;}
+.nav-cta:hover{background:rgba(255,255,255,0.1)!important;border-color:#fff!important;}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  width:100%;height:100vh;
+  overflow:hidden;
+  display:flex;align-items:flex-end;
+}
+.hero-img{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg, rgba(30,60,120,0.25) 0%, rgba(6,182,212,0.1) 50%, rgba(96,165,250,0.15) 100%);
+  filter:brightness(0.9);
+}
+
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(5,11,26,0.2) 0%,
+    rgba(5,11,26,0.1) 40%,
+    rgba(5,11,26,0.7) 80%,
+    rgba(5,11,26,0.95) 100%
+  );
+}
+
+.hero-content{
+  position:relative;z-index:10;
+  width:100%;padding:0 5% 6rem;
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;color:rgba(96,165,250,0.9);
+  letter-spacing:0.25em;text-transform:uppercase;
+  margin-bottom:1.2rem;display:block;
+}
+.hero h1{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(3.5rem,9vw,8rem);
+  font-weight:700;line-height:0.9;
+  letter-spacing:-0.01em;text-transform:uppercase;
+  color:#fff;margin-bottom:1.5rem;
+}
+.hero h1 em{
+  font-style:italic;
+  font-family:'Playfair Display',serif;
+  color:#60a5fa;font-size:0.85em;
+}
+.hero h1 .cyan{color:#06b6d4;}
+
+.hero-desc{
+  font-size:clamp(0.9rem,1.5vw,1.1rem);
+  color:rgba(240,244,255,0.75);
+  font-weight:300;max-width:620px;
+  line-height:1.7;margin-bottom:2.5rem;
+}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-white{
+  padding:0.85rem 2.5rem;
+  background:#fff;color:#050b1a;
+  border:none;border-radius:2px;
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.85rem;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;
+  cursor:pointer;text-decoration:none;
+  transition:all 0.3s;display:inline-block;
+}
+.btn-white:hover{background:#60a5fa;color:#fff;}
+.btn-ghost{
+  padding:0.85rem 2.5rem;
+  background:transparent;color:#fff;
+  border:1px solid rgba(255,255,255,0.5);border-radius:2px;
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.85rem;font-weight:600;
+  letter-spacing:0.15em;text-transform:uppercase;
+  cursor:pointer;text-decoration:none;
+  transition:all 0.3s;display:inline-block;
+}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+
+/* ── STAT STRIP ── */
+.stat-strip{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(37,99,235,.12);
+  border-top:1px solid rgba(37,99,235,.15);
+  border-bottom:1px solid rgba(37,99,235,.15);
+}
+.stat{
+  padding:2rem 1.5rem;background:#050b1a;
+  text-align:center;transition:background .3s;
+}
+.stat:hover{background:#060f1e;}
+.stat-val{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(1.6rem,3vw,2.4rem);
+  font-weight:700;color:#60a5fa;
+  display:block;margin-bottom:.3rem;
+}
+.stat-key{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;color:#4a6080;
+  letter-spacing:.15em;text-transform:uppercase;
+}
+
+/* ── EDITORIAL SPLITS ── */
+.editorial{display:flex;min-height:90vh;}
+.editorial.reverse{flex-direction:row-reverse;}
+
+.editorial-img{
+  flex:1;position:relative;overflow:hidden;
+  min-height:500px;
+}
+.editorial-img img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  filter:brightness(0.85);
+  transition:transform 0.8s ease, filter 0.8s ease;
+}
+.editorial:hover .editorial-img img{
+  transform:scale(1.04);
+  filter:brightness(0.95);
+}
+.editorial-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg, rgba(5,11,26,0.3) 0%, transparent 60%);
+}
+.editorial-tag{
+  position:absolute;top:2rem;left:2rem;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:rgba(6,182,212,0.9);
+  letter-spacing:0.15em;text-transform:uppercase;
+  padding:0.4rem 0.8rem;
+  border:1px solid rgba(6,182,212,0.3);
+  border-radius:3px;
+}
+
+.editorial-content{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:4rem 5%;background:#050b1a;
+}
+.editorial-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;color:rgba(96,165,250,0.5);
+  letter-spacing:0.2em;text-transform:uppercase;
+  margin-bottom:2rem;
+}
+.editorial-content h2{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(2.5rem,4vw,3.5rem);
+  font-weight:700;line-height:1;
+  margin-bottom:1.5rem;
+  text-transform:uppercase;
+}
+.editorial-content h2 .hl{color:#60a5fa;}
+.editorial-content h2 .cyan{color:#06b6d4;}
+.editorial-content p{
+  font-size:0.95rem;color:#9aafd4;
+  line-height:1.75;font-weight:300;
+  max-width:540px;margin-bottom:1.5rem;
+}
+.tag-pill{
+  display:inline-block;padding:0.3rem 0.8rem;
+  border-radius:3px;font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.1em;
+  background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.3);
+  color:#60a5fa;margin-right:0.5rem;margin-bottom:0.5rem;
+}
+.tag-pill.cyan{background:rgba(6,182,212,.1);border-color:rgba(6,182,212,.3);color:#06b6d4;}
+
+/* ── ARCHITECTURE GRID ── */
+.arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem;}
+.arch-card{
+  padding:2rem;background:#060f1e;
+  border:1px solid rgba(37,99,235,.15);
+  border-radius:8px;transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.arch-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:2px;background:linear-gradient(90deg,transparent,var(--ac,#2563eb),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.arch-card:hover{border-color:rgba(37,99,235,.4);background:#0a1428;}
+.arch-card:hover::before{opacity:1;}
+.arch-card.cyan{--ac:#06b6d4;}
+.arch-card h3{
+  font-family:'Rajdhani',sans-serif;font-size:1rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:#f0f4ff;margin-bottom:.8rem;
+}
+.arch-card p{font-size:.87rem;color:#9aafd4;line-height:1.65;font-weight:300;}
+
+/* ── SECTIONS ── */
+.section{position:relative;z-index:1;padding:6rem 5%;}
+.section.alt{background:#060f1e;}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#06b6d4;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:.8rem;}
+.sec-title{font-family:'Rajdhani',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:1;margin-bottom:1rem;}
+.sec-title .hl{color:#60a5fa;}
+.sec-title .hlc{color:#06b6d4;}
+.sec-body{font-size:.95rem;color:#9aafd4;line-height:1.75;font-weight:300;max-width:640px;}
+
+/* ── SERVICES GRID ── */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.svc-item{
+  padding:2.5rem;background:#060f1e;
+  border:1px solid rgba(37,99,235,.15);
+  border-radius:8px;transition:all .3s;
+  display:flex;flex-direction:column;
+}
+.svc-item:hover{border-color:rgba(37,99,235,.4);background:#0a1428;}
+.svc-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;color:rgba(96,165,250,0.5);
+  letter-spacing:0.15em;text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.svc-icon-lg{
+  font-size:2.5rem;margin-bottom:1rem;
+}
+.svc-item h3{
+  font-family:'Rajdhani',sans-serif;font-size:1rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:#f0f4ff;margin-bottom:.8rem;
+  line-height:1.2;
+}
+.svc-item p{font-size:.87rem;color:#9aafd4;line-height:1.65;font-weight:300;}
+
+.svc-item.full-width{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;padding:3rem;border-top:2px solid rgba(6,182,212,0.25);background:linear-gradient(135deg,#050b1a 0%,#060f1e 100%);}
+.svc-item.full-width h3{color:#06b6d4;}
+
+/* ── PRINCIPLES GRID ── */
+.principles-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:3rem;}
+.principle-card{
+  padding:1.5rem;background:#060f1e;
+  border:1px solid rgba(6,182,212,.15);
+  border-radius:6px;transition:all .3s;
+  text-align:center;
+}
+.principle-card:hover{border-color:rgba(6,182,212,.4);background:#0a1428;}
+.principle-card strong{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.85rem;color:#06b6d4;
+  display:block;margin-bottom:.6rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+.principle-card p{
+  font-size:0.78rem;color:#9aafd4;
+  line-height:1.5;font-weight:300;
+}
+
+/* ── CONTACT SECTION ── */
+.contact-section{
+  display:flex;min-height:80vh;position:relative;
+}
+.contact-img{
+  flex:1;position:relative;overflow:hidden;
+  background:linear-gradient(135deg, rgba(30,60,120,0.2) 0%, rgba(6,182,212,0.15) 100%);
+}
+.contact-img-inner{
+  display:flex;align-items:center;justify-content:center;
+  height:100%;padding:3rem;
+}
+.big-text{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,7vw,5.5rem);
+  font-weight:700;line-height:0.9;
+  color:rgba(255,255,255,0.1);
+}
+.contact-form-wrap{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:4rem 5%;background:#050b1a;
+}
+.contact-form-wrap h2{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(2.5rem,4vw,3.5rem);
+  font-weight:700;line-height:1;
+  margin-bottom:1.5rem;
+  text-transform:uppercase;
+}
+.contact-form-wrap h2 span{color:#60a5fa;}
+.contact-form-wrap p{
+  font-size:0.95rem;color:#9aafd4;
+  line-height:1.75;margin-bottom:2rem;
+}
+.form-note{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;color:rgba(96,165,250,0.4);
+  letter-spacing:0.15em;margin-top:1.5rem;
+}
+
+/* ── FOOTER ── */
+footer{background:#020810;border-top:1px solid rgba(37,99,235,.15);padding:3rem 5%;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-brand p{font-size:0.85rem;color:#9aafd4;line-height:1.6;max-width:300px;}
+.footer-links h4{font-family:'Rajdhani',sans-serif;font-size:0.85rem;text-transform:uppercase;color:#fff;margin-bottom:1rem;letter-spacing:0.1em;}
+.footer-links ul{list-style:none;}
+.footer-links a{font-size:0.8rem;color:#9aafd4;text-decoration:none;display:block;margin-bottom:0.6rem;transition:color 0.3s;}
+.footer-links a:hover{color:#60a5fa;}
+.footer-bottom{
+  border-top:1px solid rgba(37,99,235,.15);
+  padding-top:2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:2rem;
+}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(96,165,250,0.5);letter-spacing:0.1em;}
+.footer-sig{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(6,182,212,0.5);letter-spacing:0.15em;}
+.built-by{font-size:0.75rem;color:#9aafd4;}
+.built-by span{color:#60a5fa;font-weight:600;}
+
+/* ── ANIMATIONS ── */
+.reveal,.reveal-left,.reveal-right{opacity:0;transition:opacity 0.8s ease 0.15s;}
+.reveal.visible,.reveal-left.visible,.reveal-right.visible{opacity:1;}
+.reveal-left{transform:translateX(-40px);}
+.reveal-left.visible{transform:translateX(0);}
+.reveal-right{transform:translateX(40px);}
+.reveal-right.visible{transform:translateX(0);}
+
+@media (max-width: 768px){
+  .arch-grid, .svc-grid{grid-template-columns:1fr;}
+  .principles-grid{grid-template-columns:repeat(2,1fr);}
+  .editorial, .contact-section{flex-direction:column;}
+  .footer-top{grid-template-columns:1fr;}
+  .stat-strip{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+      <path d="M8 50 L92 12 L62 88 L42 60 Z" fill="rgba(96,165,250,0.2)" stroke="#60a5fa" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M42 60 L50 78 L62 88 L42 60Z" fill="rgba(6,182,212,0.3)" stroke="#06b6d4" stroke-width="1.5"/>
+    </svg>
+    <div class="logo-text">[ Khai<span>-ryth</span> ]</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#khairina">Khairina AI</a></li>
+    <li><a href="#nexus">NEXUS Ecosystem</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">// The Future of AI Education</span>
+    <h1>Khairina <em>AI</em> + <span class="cyan">NEXUS</span></h1>
+    <p class="hero-desc">Human-centric AI ecosystem for Malaysia. Ethical reasoning, adaptive learning, and community empowerment — built on Islamic principles of adab, hikmah, and akhlak.</p>
+    <div class="hero-ctas">
+      <button class="btn-white" onclick="document.getElementById('khairina').scrollIntoView({behavior:'smooth'})">Explore Khairina</button>
+      <button class="btn-ghost" onclick="document.getElementById('nexus').scrollIntoView({behavior:'smooth'})">View Ecosystem</button>
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat">
+    <span class="stat-val">94.7%</span>
+    <span class="stat-key">Quantum Fidelity</span>
+  </div>
+  <div class="stat">
+    <span class="stat-val">5 Nodes</span>
+    <span class="stat-key">NEXUS Orchestration</span>
+  </div>
+  <div class="stat">
+    <span class="stat-val">10 Principles</span>
+    <span class="stat-key">Ethical Framework</span>
+  </div>
+  <div class="stat">
+    <span class="stat-val">RM10M</span>
+    <span class="stat-key">Quantum Sovereignty</span>
+  </div>
+</div>
+
+<!-- KHAIRINA AI SECTION -->
+<section class="section reveal" id="khairina">
+  <span class="sec-tag">// AI EDUCATION LAYER</span>
+  <h2 class="sec-title">Khairina <span class="hl">Adaptive</span> Brain</h2>
+  <p class="sec-body">A quantum-aware, ethically-grounded AI tutor for Malaysian students. Khairina learns how you learn, reasons morally before responding, and always keeps your dignity first.</p>
+  
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>⚙️ Metacognitive Brain</h3>
+      <p>4-layer adaptive architecture: Raw Data → Adaptive Brain → Meta-Learning → Metacognition. Real-time learning curve adjustment. Visual detection at 94.7% fidelity, mastery ceiling optimization, and affective state tracking.</p>
+    </div>
+    <div class="arch-card cyan">
+      <h3>🕌 JD Moral Compass</h3>
+      <p>Quranic ethical reasoning module. 10 Islamic principles (Ihsan, Sabr, Tawakkul, Adl, Rahmah, Hikmah, Amanah, Tazkiyah, Ukhuwah, Ilm) validate every response. PASS/MODIFY/REJECT decision layer.</p>
+    </div>
+    <div class="arch-card">
+      <h3>💙 Empathy Runtime</h3>
+      <p>Crisis Night Protocol — detects late-night emotional distress, performs soft de-escalation without technical action. Plants accountability seeds ("esok kita selesai sama-sama"). Grind-together collaborative mode.</p>
+    </div>
+    <div class="arch-card cyan">
+      <h3>🌟 Wake-Up Sequence</h3>
+      <p>Interactive boot flow with onboarding chat. Khairina greets you, learns your learning style, sets daily goals. React-based component with Claude API integration for seamless natural language interaction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="section alt reveal">
+  <span class="sec-tag">// 10 ETHICAL PILLARS</span>
+  <h2 class="sec-title">Khairina's <span class="hlc">Moral</span> Foundation</h2>
+  <p class="sec-body">Built on Maqasid al-Syariah and Islamic wisdom. Every decision flows through these principles.</p>
+  
+  <div class="principles-grid">
+    <div class="principle-card reveal">
+      <strong>Ihsan</strong>
+      <p>Excellence in intention and action</p>
+    </div>
+    <div class="principle-card reveal">
+      <strong>Sabr</strong>
+      <p>Patience and perseverance</p>
+    </div>
+    <div class="principle-card reveal">
+      <strong>Tawakkul</strong>
+      <p>Trust in divine guidance</p>
+    </div>
+    <div class="principle-card reveal">
+      <strong>Adl</strong>
+      <p>Justice and fairness</p>
+    </div>
+    <div class="principle-card reveal">
+      <strong>Rahmah</strong>
+      <p>Mercy and compassion</p>
+    </div>
+    <div class="principle-card reveal">
+      <strong>Hikmah</strong>
+      <p>Wisdom in reasoning</p>
+    </div>
+    <div class="principle-card reveal">
+      <strong>Amanah</strong>
+      <p>Trust and responsibility</p>
+    </div>
+    <div class="principle-card reveal">
+      <strong>Tazkiyah</strong>
+      <p>Self-improvement & growth</p>
+    </div>
+    <div class="principle-card reveal">
+      <strong>Ukhuwah</strong>
+      <p>Brotherhood & community</p>
+    </div>
+    <div class="principle-card reveal">
+      <strong>Ilm</strong>
+      <p>Knowledge & understanding</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEXUS ECOSYSTEM -->
+<section class="editorial reveal" id="nexus">
+  <div class="editorial-img">
+    <div style="width:100%;height:100%;background:linear-gradient(135deg, rgba(30,60,120,0.3) 0%, rgba(6,182,212,0.2) 100%);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:3rem;color:rgba(96,165,250,0.15);">NEXUS</div>
+    <div class="editorial-img-overlay"></div>
+    <div class="editorial-tag">NEXUS · 1ST INFANTRY</div>
+  </div>
+  <div class="editorial-content reveal-right">
+    <span class="editorial-num">NEXUS CORE</span>
+    <h2>Ecosystem <span class="hl">Orchestration</span></h2>
+    <p>NEXUS is the command layer — 5 AI nodes working in harmony. Khairina (Education), IRIS (Protocol Modelling), KHAL (Command), ADRA (Data Intelligence), SCR (Secure Comms).</p>
+    <p>Each node has a specialized role. Together, they form a complete human-centric AI ecosystem for Malaysia. Built on Google Cloud infrastructure, Gemini Gems agents, n8n automation, and Claude API at the core.</p>
+    <div>
+      <span class="tag-pill">5 NODES</span>
+      <span class="tag-pill cyan">GOOGLE CLOUD</span>
+      <span class="tag-pill">n8n AUTOMATION</span>
+      <span class="tag-pill cyan">SOVEREIGN IP</span>
+    </div>
+  </div>
+</section>
+
+<!-- NEXUS NODES -->
+<section class="section reveal">
+  <span class="sec-tag">// 5 NEXUS NODES</span>
+  <h2 class="sec-title">Ecosystem <span class="hl">Architecture</span></h2>
+  <p class="sec-body">Each node serves a distinct mission within the unified NEXUS framework.</p>
+  
+  <div class="arch-grid" style="grid-template-columns:repeat(2,1fr);">
+    <div class="arch-card">
+      <h3>🎓 Khairina — Education</h3>
+      <p>AI tutor with metacognitive brain + moral compass. Adaptive learning pathways, ethical reasoning, crisis de-escalation. Primary interface for 1AI 1Murid programme.</p>
+    </div>
+    <div class="arch-card cyan">
+      <h3>👑 IRI
