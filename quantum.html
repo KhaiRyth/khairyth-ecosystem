@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Quantum Sovereignty — [ Khai-ryth ]</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@200;300;400;600;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#020810;color:#f0f4ff;font-family:'Exo 2',sans-serif;overflow-x:hidden;}
+
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(37,99,235,0.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(37,99,235,0.035) 1px,transparent 1px);
+  background-size:50px 50px;
+  pointer-events:none;z-index:0;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:64px;
+  background:rgba(2,8,16,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(37,99,235,0.2);
+}
+.nav-logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;}
+.logo-text{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.1em;color:#f0f4ff;}
+.logo-text span{color:#60a5fa;}
+.nav-back{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  color:rgba(96,165,250,0.7);letter-spacing:.1em;
+  text-decoration:none;display:flex;align-items:center;gap:.4rem;
+  transition:color .3s;
+}
+.nav-back:hover{color:#60a5fa;}
+
+/* HERO */
+.hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:7rem 5% 5rem;
+  overflow:hidden;
+}
+.hero-orb{
+  position:absolute;border-radius:50%;
+  filter:blur(100px);pointer-events:none;
+}
+.orb-1{
+  width:800px;height:800px;
+  background:radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 70%);
+  top:-200px;left:50%;transform:translateX(-50%);
+  animation:pulse 10s ease-in-out infinite;
+}
+.orb-2{
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(6,182,212,0.08) 0%,transparent 70%);
+  bottom:0;right:0;
+  animation:pulse2 13s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.5;transform:translateX(-50%) scale(1);}50%{opacity:1;transform:translateX(-50%) scale(1.1);}}
+@keyframes pulse2{0%,100%{opacity:.4;transform:scale(1);}50%{opacity:.8;transform:scale(1.2);}}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.35rem 1rem;border:1px solid rgba(37,99,235,.5);
+  border-radius:100px;font-family:'JetBrains Mono',monospace;
+  font-size:.68rem;color:#60a5fa;letter-spacing:.15em;
+  margin-bottom:2rem;background:rgba(37,99,235,.06);
+}
+.dot{width:6px;height:6px;background:#06b6d4;border-radius:50%;animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+.hero h1{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(3rem,8vw,7rem);
+  font-weight:700;line-height:.95;
+  letter-spacing:.02em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.hero h1 .ac{color:#60a5fa;}
+.hero h1 .acc{color:#06b6d4;}
+
+.hero-sub{
+  font-size:clamp(.9rem,1.8vw,1.1rem);
+  color:#9aafd4;font-weight:300;
+  max-width:620px;line-height:1.75;
+  margin:0 auto 3rem;
+}
+
+/* MEASAT STAT STRIP */
+.sat-strip{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(37,99,235,.12);
+  border-top:1px solid rgba(37,99,235,.15);
+  border-bottom:1px solid rgba(37,99,235,.15);
+}
+.sat-stat{
+  padding:2rem 1.5rem;background:#020810;
+  text-align:center;transition:background .3s;
+}
+.sat-stat:hover{background:#060f1e;}
+.sat-val{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(1.6rem,3vw,2.4rem);
+  font-weight:700;color:#60a5fa;
+  display:block;margin-bottom:.3rem;
+}
+.sat-key{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;color:#4a6080;
+  letter-spacing:.15em;text-transform:uppercase;
+}
+
+/* SECTIONS */
+.section{position:relative;z-index:1;padding:6rem 5%;}
+.section.alt{background:#060f1e;}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#06b6d4;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:.8rem;}
+.sec-title{font-family:'Rajdhani',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:1;margin-bottom:1rem;}
+.sec-title .hl{color:#60a5fa;}
+.sec-title .hlc{color:#06b6d4;}
+.sec-body{font-size:.95rem;color:#9aafd4;line-height:1.75;font-weight:300;max-width:640px;}
+
+/* ARCHITECTURE GRID */
+.arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem;}
+.arch-card{
+  padding:2rem;background:#020810;
+  border:1px solid rgba(37,99,235,.15);
+  border-radius:8px;transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.arch-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:2px;background:linear-gradient(90deg,transparent,var(--ac,#2563eb),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.arch-card:hover{border-color:rgba(37,99,235,.4);background:#060f1e;}
+.arch-card:hover::before{opacity:1;}
+.arch-card.cyan{--ac:#06b6d4;}
+.arch-card h3{
+  font-family:'Rajdhani',sans-serif;font-size:1rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:#f0f4ff;margin-bottom:.8rem;
+}
+.arch-card p{font-size:.87rem;color:#9aafd4;line-height:1.65;font-weight:300;}
+.arch-tag{
+  display:inline-block;margin-top:1rem;
+  padding:.2rem .6rem;border-radius:3px;
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;
+  letter-spacing:.1em;
+}
+.arch-tag.blue{background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.3);color:#60a5fa;}
+.arch-tag.cyan{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);color:#06b6d4;}
+
+/* TECH SPECS TABLE */
+.spec-table{width:100%;border-collapse:collapse;margin-top:2rem;}
+.spec-table th{
+  font-family:'JetBrains Mono',monospace;font-size:.65rem;
+  color:#4a6080;letter-spacing:.15em;text-transform:uppercase;
+  padding:.75rem 1rem;text-align:left;
+  border-bottom:1px solid rgba(37,99,235,.15);
+}
+.spec-table td{
+  padding:.75rem 1rem;font-size:.87rem;color:#9aafd4;
+  border-bottom:1px solid rgba(37,99,235,.08);
+  font-weight:300;
+}
+.spec-table td:first-child{color:#60a5fa;font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.05em;}
+.spec-table tr:hover td{background:rgba(37,99,235,.04);}
+.spec-val{color:#f0f4ff!important;font-weight:600!important;}
+
+/* FUNDING STACK */
+.funding-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2.5rem;}
+.fund-card{
+  padding:1.5rem;background:#020810;
+  border:1px solid rgba(37,99,235,.12);border-radius:8px;
+  transition:all .3s;
+}
+.fund-card:hover{border-color:rgba(37,99,235,.3);transform:translateY(-3px);}
+.fund-phase{
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;
+  color:#06b6d4;letter-spacing:.2em;display:block;margin-bottom:.6rem;
+}
+.fund-card h4{
+  font-family:'Rajdhani',sans-serif;font-size:.95rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:#f0f4ff;margin-bottom:.5rem;
+}
+.fund-amount{
+  font-family:'Rajdhani',sans-serif;font-size:1.4rem;
+  font-weight:700;color:#60a5fa;display:block;margin-bottom:.3rem;
+}
+.fund-time{font-size:.8rem;color:#4a6080;font-weight:300;}
+.fund-badge{
+  display:inline-block;margin-top:.8rem;
+  padding:.15rem .5rem;border-radius:3px;
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;
+  letter-spacing:.1em;background:rgba(6,182,212,.1);
+  border:1px solid rgba(6,182,212,.25);color:#06b6d4;
+}
+
+/* ROADMAP */
+.roadmap{margin-top:3rem;position:relative;}
+.roadmap::before{
+  content:'';position:absolute;left:20px;top:0;bottom:0;
+  width:1px;background:linear-gradient(180deg,#2563eb,transparent);
+}
+.road-item{
+  display:flex;gap:1.5rem;margin-bottom:2rem;
+  padding-left:0;
+}
+.road-dot{
+  width:40px;height:40px;flex-shrink:0;
+  background:#020810;border:1px solid rgba(37,99,235,.4);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#60a5fa;
+  position:relative;z-index:1;
+}
+.road-content h4{
+  font-family:'Rajdhani',sans-serif;font-size:1rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:#f0f4ff;margin-bottom:.4rem;
+}
+.road-content p{font-size:.87rem;color:#9aafd4;line-height:1.6;font-weight:300;}
+.road-content .qtag{
+  display:inline-block;margin-top:.5rem;
+  padding:.15rem .5rem;background:rgba(37,99,235,.1);
+  border:1px solid rgba(37,99,235,.25);border-radius:3px;
+  font-family:'JetBrains Mono',monospace;font-size:.58rem;
+  color:#60a5fa;letter-spacing:.1em;
+}
+
+/* CTA */
+.cta-strip{
+  position:relative;z-index:1;
+  padding:5rem 5%;text-align:center;
+  background:linear-gradient(135deg,#060f1e 0%,#020810 100%);
+  border-top:1px solid rgba(37,99,235,.15);
+}
+.cta-strip h2{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(2rem,5vw,4rem);
+  font-weight:700;text-transform:uppercase;
+  letter-spacing:.04em;margin-bottom:1rem;
+}
+.cta-strip p{color:#9aafd4;max-width:500px;margin:0 auto 2rem;line-height:1.7;font-size:.95rem;font-weight:300;}
+.btn-p{
+  padding:.85rem 2.5rem;background:#2563eb;color:white;
+  border:none;border-radius:4px;font-family:'Rajdhani',sans-serif;
+  font-size:.9rem;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;cursor:pointer;text-decoration:none;
+  transition:all .3s;display:inline-block;margin:.3rem;
+}
+.btn-p:hover{box-shadow:0 0 30px rgba(37,99,235,.5);transform:translateY(-2px);}
+.btn-o{
+  padding:.85rem 2.5rem;background:transparent;color:#60a5fa;
+  border:1px solid rgba(37,99,235,.4);border-radius:4px;
+  font-family:'Rajdhani',sans-serif;font-size:.9rem;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase;cursor:pointer;
+  text-decoration:none;transition:all .3s;display:inline-block;margin:.3rem;
+}
+.btn-o:hover{border-color:#60a5fa;background:rgba(37,99,235,.08);}
+
+/* FOOTER */
+footer{
+  position:relative;z-index:1;
+  padding:2rem 5%;
+  border-top:1px solid rgba(37,99,235,.1);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:#2a3a50;letter-spacing:.1em;}
+.built-by{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:#2a3a50;}
+.built-by span{color:#60a5fa;}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  .arch-grid{grid-template-columns:1fr;}
+  .sat-strip{grid-template-columns:repeat(2,1fr);}
+  footer{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="khairyth_v3_golden.html">
+    <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+      <path d="M8 50 L92 12 L62 88 L42 60 Z" fill="rgba(96,165,250,0.15)" stroke="#60a5fa" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M42 60 L50 78 L62 88 L42 60Z" fill="rgba(6,182,212,0.25)" stroke="#06b6d4" stroke-width="1.5"/>
+    </svg>
+    <div class="logo-text">[ Khai<span>-ryth</span> ]</div>
+  </a>
+  <a class="nav-back" href="khairyth_v3_golden.html">← Back to Ecosystem</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+
+  <div class="hero-badge">
+    <span class="dot"></span>
+    PROJEK HOLY GRAIL · QUANTUM-SAFE JOHOR
+  </div>
+
+  <h1>
+    <span class="acc">Quantum</span><br/>
+    <span class="ac">Sovereignty</span>
+  </h1>
+
+  <p class="hero-sub">
+    Kedaulatan digital Malaysia melalui integrasi Quantum Key Distribution (QKD) pada MEASAT-3d. Johor sebagai Hub Selamat-Kuantum pertama di Asia Tenggara — dengan Khai-ryth sebagai otak operasi native.
+  </p>
+</section>
+
+<!-- MEASAT STATS -->
+<div class="sat-strip reveal">
+  <div class="sat-stat">
+    <span class="sat-val">30 Gbps</span>
+    <span class="sat-key">HTS Capacity</span>
+  </div>
+  <div class="sat-stat">
+    <span class="sat-val">RM1.2B</span>
+    <span class="sat-key">Asset Value</span>
+  </div>
+  <div class="sat-stat">
+    <span class="sat-val">91.5°E</span>
+    <span class="sat-key">Orbital Slot</span>
+  </div>
+  <div class="sat-stat">
+    <span class="sat-val">18+ Yrs</span>
+    <span class="sat-key">Lifespan to 2040</span>
+  </div>
+</div>
+
+<!-- ARCHITECTURE -->
+<section class="section reveal">
+  <span class="sec-tag">// SISTEM ARCHITECTURE</span>
+  <h2 class="sec-title">Quantum <span class="hl">Network</span> Design</h2>
+  <p class="sec-body">Rangkaian hibrid dua jalur — darat dan angkasa — untuk komunikasi yang truly unhackable merentasi seluruh Malaysia dan ASEAN.</p>
+
+  <div class="arch-grid">
+    <div class="arch-card">
+      <h3>🌐 Jalur Darat — JS-SEZ Quantum Link</h3>
+      <p>QKD-as-a-Service melalui kabel gentian optik kependaman rendah TIME dotCom & Telekom Malaysia. Menghubungkan pusat data ZData, NTT, dan institusi kewangan. QBER di bawah 1% untuk jarak bawah 150 km.</p>
+      <span class="arch-tag blue">TIME DOTCOM</span>
+      <span class="arch-tag blue">TM BACKBONE</span>
+    </div>
+    <div class="arch-card cyan">
+      <h3>🛰️ Jalur Angkasa — MEASAT-3d QKD Node</h3>
+      <p>Modul CubeSat QubitCore sebagai nod pengulang kuantum angkasa. Mengatasi had jarak 150 km gentian optik. Menghubungkan Johor dengan nod luar semenanjung tanpa kabel dasar laut.</p>
+      <span class="arch-tag cyan">MEASAT-3d</span>
+      <span class="arch-tag cyan">QUBITRIUM QUBITCORE</span>
+    </div>
+    <div class="arch-card">
+      <h3>🤖 Khai-ryth AI — Otak Operasi Native</h3>
+      <p>Kawalan C2 autonomi untuk urus ralat penudingan optik secara automatik. Optimasi pautan Ka-band melalui analisis prediktif cuaca masa nyata. Kedaulatan IP — kunci kriptografi negara tidak bergantung kepada pihak luar.</p>
+      <span class="arch-tag blue">C2 AUTONOMOUS</span>
+      <span class="arch-tag blue">SOVEREIGN IP</span>
+    </div>
+    <div class="arch-card cyan">
+      <h3>🏭 Johor Ground Station — Nusajaya Tech Park</h3>
+      <p>Optical Ground Station (OGS) dengan teleskop apertur 60cm–1m. Sistem penjejakan dua peringkat dengan FSM. Sub-nanosecond synchronization. Lokasi strategik 15km dari Singapura dengan DCI connectivity.</p>
+      <span class="arch-tag cyan">NUSAJAYA TECH PARK</span>
+      <span class="arch-tag cyan">GREEN ENERGY</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUBITCORE SPECS -->
+<section class="section alt reveal">
+  <span class="sec-tag">// HARDWARE SPECIFICATIONS</span>
+  <h2 class="sec-title">QubitCore <span class="hlc">SWaP</span> Analysis</h2>
+  <p class="sec-body">Qubitrium QubitCore — modular quantum payload yang telah mencapai orbital validation. Technical heart bagi ground terminal Khai-ryth di Johor.</p>
+
+  <table class="spec-table">
+    <tr><th>Parameter</th><th>Specification</th><th>Impact</th></tr>
+    <tr><td>Dimensions</td><td class="spec-val">95 × 95 × 100 mm</td><td>CubeSat 1U compatible</td></tr>
+    <tr><td>Mass</td><td class="spec-val">1.0 kg</td><td>Low CAPEX for ground deployment</td></tr>
+    <tr><td>Power</td><td class="spec-val">8.0 Watts</td><td>Solar/renewable compatible</td></tr>
+    <tr><td>Protocol</td><td class="spec-val">BBM92 (Entanglement-based)</td><td>Trust-free node security</td></tr>
+    <tr><td>Detectors</td><td class="spec-val">4 single-photon / module</td><td>High-fidelity key generation</td></tr>
+    <tr><td>Altitude</td><td class="spec-val">LEO 500–600 km</td><td>Orbital validated</td></tr>
+    <tr><td>OGS Aperture</td><td class="spec-val">60 cm – 1 meter</td><td>Johor atmospheric profile</td></tr>
+    <tr><td>Pointing Error</td><td class="spec-val">&lt; 10 microradians</td><td>Sub-nanosecond sync</td></tr>
+  </table>
+</section>
+
+<!-- FUNDING STACK -->
+<section class="section reveal">
+  <span class="sec-tag">// FUNDING ARCHITECTURE</span>
+  <h2 class="sec-title">Capital <span class="hl">Stack</span></h2>
+  <p class="sec-body">Non-dilutive government capital untuk de-risk venture sebelum private equity masuk. Multi-phase, zero equity loss strategy.</p>
+
+  <div class="funding-grid">
+    <div class="fund-card">
+      <span class="fund-phase">PHASE 1 // IMMEDIATE</span>
+      <h4>Cradle CIP Spark</h4>
+      <span class="fund-amount">RM 150K</span>
+      <div class="fund-time">2–4 bulan · Pre-seed MVP</div>
+      <span class="fund-badge">ZERO DILUTION</span>
+    </div>
+    <div class="fund-card">
+      <span class="fund-phase">PHASE 1 // ACCELERATION</span>
+      <h4>MDEC MDAG-AI</h4>
+      <span class="fund-amount">RM 2M</span>
+      <div class="fund-time">3–5 bulan · 70% matching</div>
+      <span class="fund-badge">ZERO DILUTION</span>
+    </div>
+    <div class="fund-card">
+      <span class="fund-phase">PHASE 1 // DEEP TECH</span>
+      <h4>MOSTI PEMACU 2.0</h4>
+      <span class="fund-amount">RM 10M</span>
+      <div class="fund-time">4–6 bulan · SRF Grant</div>
+      <span class="fund-badge">ZERO DILUTION</span>
+    </div>
+    <div class="fund-card">
+      <span class="fund-phase">PHASE 2 // DEBT</span>
+      <h4>MDV-TACT</h4>
+      <span class="fund-amount">Variable</span>
+      <div class="fund-time">1–2 bulan · IP valuation</div>
+      <span class="fund-badge">NO EQUITY</span>
+    </div>
+    <div class="fund-card">
+      <span class="fund-phase">PHASE 3 // EQUITY</span>
+      <h4>pitchIN ECF</h4>
+      <span class="fund-amount">RM 3M/yr</span>
+      <div class="fund-time">1–2 bulan · PSTX secondary</div>
+      <span class="fund-badge">5–15% DILUTION</span>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section alt reveal">
+  <span class="sec-tag">// EXECUTION ROADMAP</span>
+  <h2 class="sec-title">Zaim's <span class="hl">2026</span> Plan</h2>
+  <p class="sec-body">Dari prototype ke national asset — four-phase strategic execution.</p>
+
+  <div class="roadmap">
+    <div class="road-item">
+      <div class="road-dot">Q2</div>
+      <div class="road-content">
+        <h4>Prototype & Grant Acquisition</h4>
+        <p>Apply Cradle CIP Spark (RM150k) + MOSTI PEMACU 2.0 Technology Development Fund (RM4M). Finalize QKD-ready mission control prototype dengan Khai-ryth AI sebagai orchestration layer.</p>
+        <span class="qtag">IMMEDIATE</span>
+      </div>
+    </div>
+    <div class="road-item">
+      <div class="road-dot">Q3</div>
+      <div class="road-content">
+        <h4>Johor Ground Station — JS-SEZ</h4>
+        <p>Establish ground terminal operations di Nusajaya Tech Park. Secure 5% corporate tax + 15% personal income tax benefits JS-SEZ. IMFC-J fast-track approval. Connect dengan NVIDIA/Microsoft data center ecosystem.</p>
+        <span class="qtag">INFRASTRUCTURE</span>
+      </div>
+    </div>
+    <div class="road-item">
+      <div class="road-dot">Q4</div>
+      <div class="road-content">
+        <h4>ECF Campaign + Founder Liquidity</h4>
+        <p>Execute pitchIN ECF campaign — raise RM3M. Set stage untuk secondary share sale PSTX 2027. Personal liquidity untuk Zaim tanpa hilang kontrol syarikat.</p>
+        <span class="qtag">LIQUIDITY</span>
+      </div>
+    </div>
+    <div class="road-item">
+      <div class="road-dot">27</div>
+      <div class="road-content">
+        <h4>Global Marketplace Listing</h4>
+        <p>List Khai-ryth sebagai specialized agent pada Salesforce AgentExchange dan Microsoft Marketplace. Ka-band + QKD features sebagai technical moat. ASEAN regional scale-up.</p>
+        <span class="qtag">GLOBAL SCALE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JS-SEZ ADVANTAGE -->
+<section class="section reveal">
+  <span class="sec-tag">// FISCAL POSITIONING</span>
+  <h2 class="sec-title">JS-SEZ <span class="hlc">Advantage</span></h2>
+  <p class="sec-body">Johor-Singapore Special Economic Zone — bukan sekadar lokasi. Ini adalah fiscal accelerator untuk Khai-ryth.</p>
+
+  <div class="arch-grid" style="margin-top:2rem;">
+    <div class="arch-card">
+      <h3>💼 Personal Tax — 15% Flat Rate</h3>
+      <p>Knowledge workers dalam JS-SEZ layak untuk 15% flat personal income tax — berbanding standard rate sehingga 30%. Effective doubling of personal wealth accumulation speed.</p>
+      <span class="arch-tag blue">50% TAX SAVING</span>
+    </div>
+    <div class="arch-card cyan">
+      <h3>🏢 Corporate Tax — 5% Rate</h3>
+      <p>5% corporate tax rate untuk sehingga 15 tahun. Higher percentage of revenue retained for reinvestment. Twinning model — Singapore untuk global access, Johor untuk cost-efficient R&D.</p>
+      <span class="arch-tag cyan">15 YEAR INCENTIVE</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip reveal">
+  <span style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#06b6d4;letter-spacing:.2em;display:block;margin-bottom:1rem;">// JOIN THE MISSION</span>
+  <h2>Malaysia's <span style="color:#60a5fa;">Quantum</span> Future<br/>Starts in Johor.</h2>
+  <p>Projek Holy Grail — bukan sekadar infra. Ini adalah tiket masuk untuk menguasai pasaran keselamatan data di rantau ASEAN.</p>
+  <a href="mailto:contact@khairyth.com" class="btn-p">Partner With Us</a>
+  <a href="khairyth_v3_golden.html" class="btn-o">← Back to Ecosystem</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2026 KHAI-RYTH ECOSYSTEM · QUANTUM SOVEREIGNTY DIVISION · JOHOR</div>
+  <div class="built-by">Built by <span>Anthropic Claude</span> · Research by <span>Amanda AI</span></div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
