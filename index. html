@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact | Khai-ryth</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+    background: radial-gradient(circle at top, #0b0f1a, #05070c);
+    color: white;
+    overflow-x: hidden;
+  }
+
+  /* Cinematic glow layers */
+  .hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,200,255,0.25), transparent 70%);
+    filter: blur(60px);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-30px); }
+  }
+
+  .content {
+    z-index: 2;
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 40px rgba(0,200,255,0.15);
+  }
+
+  h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+
+  p {
+    opacity: 0.7;
+    margin-bottom: 30px;
+  }
+
+  .contact-box {
+    margin-top: 20px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <div class="glow"></div>
+
+  <div class="content">
+    <h1>KHAI-RYTH CONTACT NODE</h1>
+    <p>Signal bridge between human intent and AI coordination layer</p>
+
+    <div class="contact-box">
+      <!-- Cognito Forms Embed -->
+      <script src="https://www.cognitoforms.com/f/seamless.js"
+              data-key="FnMxWZTJzEeVqgwHEPvJ8Q"
+              data-form="1"></script>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
