@@ -1,0 +1,61 @@
+background-size:40px
+background-size:40px 40px;"></div>
+
+      <!-- Center Content -->
+      <div style="position:relative;z-index:2;text-align:center;padding:2rem;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#fff;">
+          NEXUS<br/><span style="color:#60a5fa;">COORDINATION LAYER</span>
+        </div>
+        <div style="margin-top:1rem;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:rgba(96,165,250,0.6);letter-spacing:0.2em;">
+          HUMAN × AI ORCHESTRATION
+        </div>
+      </div>
+
+    </div>
+    <div class="editorial-tag">NEXUS · EDUCATION CORE</div>
+  </div>
+
+  <div class="editorial-content reveal-left">
+    <span class="editorial-num">02 / 03</span>
+    <h2>Khairina<br/><span class="hl">Education</span></h2>
+    <p>Where human intuition meets AI precision. Khairina is not just a classroom — it is a living interface between student and machine intelligence.</p>
+    <p>Through NEXUS coordination, each learner becomes a node in a larger intelligence network — guided, assisted, but never replaced.</p>
+
+    <div>
+      <span class="tag-pill">1AI 1 MURID</span>
+      <span class="tag-pill cyan">LIVE COORDINATION</span>
+      <span class="tag-pill">HUMAN-IN-LOOP</span>
+      <span class="tag-pill cyan">EDU-TECH</span>
+    </div>
+  </div>
+</div>
+
+<div class="editorial-divider"></div>
+<h2>System<br/><span class="hl">Core</span></h2>
+<p>From WhatsApp to AI to dashboard — a living pipeline. Not concept. Not prototype. Execution.</p>
+Human → NEXUS → IRIS → Output → Human
+<div class="editorial" id="system">
+  <div class="editorial-img">
+    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#050b1a;">
+      <div style="font-family:'JetBrains Mono',monospace;color:#60a5fa;">
+        USER → AI → RESPONSE
+      </div>
+    </div>
+  </div>
+
+  <div class="editorial-content">
+    <span class="editorial-num">03 / 03</span>
+    <h2>System<br/><span class="hl">Core</span></h2>
+    <p>This is where the ecosystem breathes. Inputs from human users flow through NEXUS coordination into AI engines like IRIS, returning real-time outputs.</p>
+    
+    <div>
+      <span class="tag-pill">REAL-TIME</span>
+      <span class="tag-pill cyan">API CONNECTED</span>
+      <span class="tag-pill">LIVE SYSTEM</span>
+    </div>
+  </div>
+</div>
+<section style="padding:4rem 5%;">
+  <textarea placeholder="Talk to Khai-ryth AI..." style="width:100%;height:120px;background:#0a1628;color:#fff;border:1px solid #60a5fa;"></textarea>
+  <button class="btn-white" style="margin-top:1rem;">Send</button>
+</section>
